@@ -9,4 +9,6 @@ body{
 
 .card{
  background-color: cornsilk;
+ width: 250px;
+ height: 450px;
 }

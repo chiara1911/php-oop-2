@@ -75,7 +75,7 @@ class Movie extends Product
         // $genre_random=[]
         $genres = Genre::fetchAll();
         foreach ($movieEl as $el) {
-            $moviegenres = [];
+            // $moviegenres = [];
            
             // for ($i = 0; $i < count($el['genre_ids']); $i++) {
             //     $index = rand(0, count($genres) - 1);

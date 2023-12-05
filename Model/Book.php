@@ -42,6 +42,8 @@ $BookEl = json_decode($BookList, true);
 $Books = [];
 foreach ($BookEl as $item) 
 {
+    $quantity = rand (0,35);
+    $price = rand(5,50);
     $Books[] = new Book ($item["title"], $item["longDescription"], $item["thumbnailUrl"], $price, $quantity);    
 }
 ?>
