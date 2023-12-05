@@ -1,9 +1,9 @@
 
 <?php
-include __DIR__ ."/Product.php";
+include __DIR__ . "/Product.php";
 
 class Book extends Product
-{  
+{
     public string $title;
 
     public string $longDescription;
@@ -11,14 +11,13 @@ class Book extends Product
     public string $thumbnailUrl;
     public string $authors;
 
-
-    function __construct( $title, $longDescription, $thumbnailUrl, $price, $quantity)
+    function __construct($title, $longDescription, $thumbnailUrl, $price, $quantity)
     {
-       parent::__construct($price, $quantity);
+        parent::__construct($price, $quantity);
         $this->title = $title;
         $this->longDescription = $longDescription;
         $this->thumbnailUrl = $thumbnailUrl;
-      
+
         // $this->authors = $authors;
     }
 
@@ -40,10 +39,9 @@ $BookList = file_get_contents(__DIR__ . "/books_db.json");
 $BookEl = json_decode($BookList, true);
 
 $Books = [];
-foreach ($BookEl as $item) 
-{
-    $quantity = rand (0,35);
-    $price = rand(5,50);
-    $Books[] = new Book ($item["title"], $item["longDescription"], $item["thumbnailUrl"], $price, $quantity);    
+foreach ($BookEl as $item) {
+    $quantity = rand(0, 35);
+    $price = rand(5, 50);
+    $Books[] = new Book($item["title"], substr($item["longDescription"], 20), $item["thumbnailUrl"], $price, $quantity);
 }
 ?>

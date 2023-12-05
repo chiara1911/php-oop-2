@@ -6,11 +6,11 @@
             <p><?= $title ?></p>
             <div>
             <p><?= $custom?></p>
-            <!-- <p><?= $genre?></p> -->
+           <?= $genre?></p> 
             <img src="./img/<?= $language?>.svg" alt="<?= $language?>" class="flag">
             </div>
          <div>
-          quantità   <?= $quantity?>  $  <?= $price?>
+          quantità   <?= $quantity?> prezzo : $  <?= $price?>
           <?php if ($sconto > 0) { ?>
                     <div>Sconto :
                         <?= $sconto ?>

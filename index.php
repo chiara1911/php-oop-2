@@ -7,9 +7,9 @@ $movies = Movie::fetchAll();
 ?>
 
 <div class="row">
-<p>film <?php foreach($movies as $movie) {
+ <?php foreach($movies as $movie) {
     $movie -> printCard();
-  }?></p>
+  }?>
 </div>
   
    

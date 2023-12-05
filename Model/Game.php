@@ -30,11 +30,8 @@ class Game extends Product
         include __DIR__ . "/../View/cardGame.php";
     }
 }
-
 $GameList = file_get_contents(__DIR__ . "/steam_db.json");
-
 $GameEl = json_decode($GameList, true);
-
 $Games = [];
 foreach ($GameEl as $item) 
 {

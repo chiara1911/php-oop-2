@@ -16,5 +16,4 @@ prepariamo una pagina per ogni tipo (classe di oggetti) e creiamo in header dei 
 ### BONUS :
 Creare una navbar stilizzata in header per la navigazione e aggiungere un logo personalizzato
 Usare lo stesso template della card per tutti i prodotti
-Buon pomeriggio e buon divertimento ! 
-dati per libri e giochi (sentitevi liberi di modificarli come volete):
+

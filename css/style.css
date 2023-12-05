@@ -14,5 +14,9 @@ body{
 
 #card-book{
     width: 250px;
-    height: 550px;   
+   
+}
+
+.book-img{
+    width: 150px;
 }
