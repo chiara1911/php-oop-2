@@ -1,11 +1,11 @@
-<div class="col-12 col-md-4 col-lg-3" id="card-book">
+<div class="col-12 col-md-4 col-lg-3" >
     <div class="card d-flex  align-items-center m-2 ">
-        <img src="<?= $image ?>" class="card-img-top my-ratio" alt="<?= $title ?>">
-        <div class="card-body overflow-y-scroll ">
+        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/<?= $appid?>/header.jpg" class="card-img-top my-ratio" alt="<?= $name ?>">
+        <div class="card-body ">
             
-            <p><?= $title ?></p>
+            <p><?= $name ?></p>
             <div>
-       <span><?= $description?></span>
+      
       
        <p>prezzo : <?= $price?> &euro;</p>
        <p>quantità in magazzino: <?= $quantity?> </p>

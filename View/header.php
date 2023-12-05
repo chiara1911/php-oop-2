@@ -28,3 +28,4 @@
     <header class ="container">header</header>
     <main class ="container">
         <a href="books.php"> Books</a>
+        <a href="game.php">Games</a>
