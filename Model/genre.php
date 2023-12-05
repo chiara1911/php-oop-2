@@ -12,16 +12,23 @@ public $name;
 public function __construct($name){
     $this->name = $name;
 }
-}
-$genreList = file_get_contents(__DIR__ ."/genre_db.json");
-// var_dump($genreList);
-$genre = json_decode($genreList, true);
+// public function drawGenre (){
+//     return "<span class ="
+// }
 
-$genres=[];
-foreach($genre as $el){
-    $genres[] = new Genre($el);
+public static function fetchAll(){
+    $genreString = file_get_contents(__DIR__ ."/genre_db.json");
+    // var_dump($genreList);
+    $genreList = json_decode($genreString, true);
+    
+    $genres=[];
+    foreach($genreList as $item){
+        $genres[] = new Genre($item);
+    }
+    return $genres;
 }
-// var_dump($genres);
+}
+
 
 
 ?>

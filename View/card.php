@@ -5,10 +5,18 @@
             <h5><?= $original_title ?></h5>
             <p><?= $title ?></p>
             <div>
-            <p><?= $genre?></p>
+            <p><?= $custom?></p>
+            <!-- <p><?= $genre?></p> -->
             <img src="./img/<?= $language?>.svg" alt="<?= $language?>" class="flag">
             </div>
-         
+         <div>
+          quantità   <?= $quantity?>  $  <?= $price?>
+          <?php if ($sconto > 0) { ?>
+                    <div>Sconto :
+                        <?= $sconto ?>
+                    </div>
+                <?php } ?>
+         </div>
         
             
         </div>
