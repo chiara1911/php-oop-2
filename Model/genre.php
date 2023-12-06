@@ -8,10 +8,6 @@ class Genre
     {
         $this->name = $name;
     }
-    // public function drawGenre()
-    // {
-    //     return "<span class='badge text-bg-primary'>$this->name</span>";
-    // }
 
     public static function fetchAll()
     {

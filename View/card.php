@@ -5,13 +5,11 @@
             <?php if (isset($original_title)) {
             ?><h5><?= $original_title ?></h5>
             <?php } ?>
-            <p><?= $title ?></p>
-            <div>
+            <p><?= $title ?></p>            <div>
                 <p><?= $custom ?></p>
                 <?php if (isset($language)) {
             ?><img src="./img/<?= $language ?>.svg" alt="<?= $language ?>" class="flag">
-            <?php } ?>
-                
+            <?php } ?>                
             </div>
             <div>
                 quantità <?= $quantity ?> prezzo : $ <?= $price ?>

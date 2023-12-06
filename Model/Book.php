@@ -1,20 +1,20 @@
 
 <?php
 include __DIR__ . "/Product.php";
-include __DIR__ ."/Genre.php";
-include __DIR__ . "/../View/cardBook.php";
+include __DIR__ . "/Genre.php";
+
 class Book extends Product
 {
-  
+
     private int $id;
     private string $image;
     private string $title;
     private array $authors;
 
     private string $overview;
-    private array $genres;
+   
 
-    public function __construct($id, $image, $title, $authors, $overview, array $genres, $price, $quantity)
+    public function __construct($id, $image, $title, $authors, $overview,  $price, $quantity)
     {
 
         parent::__construct($price, $quantity);
@@ -24,12 +24,10 @@ class Book extends Product
         $this->title = $title;
         $this->authors = $authors;
         $this->overview = $overview;
-        $this->genres = $genres;
-
+     
     }
     public function getAuthors()
     {
-
         $template = "<p>";
         for ($n = 1; $n < count($this->authors); $n++) {
             $template .= '<span>' . $this->authors[$n] . ' - </span>';
@@ -37,49 +35,49 @@ class Book extends Product
         $template .= "<p>";
         return $template;
     }
-    private function formatGenres()
+  
+    // public function formatCard()
+    // {
+    //     $itemCard = [
+    //         'sconto' => $this->getDiscount(),
+    //         'image' => $this->image,
+    //         'title' => strlen($this->title) > 28 ? substr($this->title, 0, 28) . '...' : $this->title,
+    //         'content' => substr($this->overview, 0, 100) . '...',
+    //         'custom' => $this->getAuthors(),
+    //         'genre' => $this->formatGenres(),
+    //         'price' => $this->price,
+    //         'quantity' => $this->quantity
+    //     ];
+    //     return $itemCard;
+    // }
+    public function printCard()
     {
-        $template = "<p>";
-        for ($n = 0; $n < count($this->genres); $n++) {
-            $template .= $this->genres[$n]->drawGenre();
-        }
-        $template .= "</p>";
-        return $template;
-    }
-    public function formatCard()
-    {
-        $itemCard = [
-            'sconto' => $this->getDiscount(),
-            'image' => $this->image,
-            'title' => strlen($this->title) > 28 ? substr($this->title, 0, 28) . '...' : $this->title,
-            'content' => substr($this->overview, 0, 100) . '...',
-            'custom' => $this->getAuthors(),
-            'genre' => $this->formatGenres(),
-            'price' => $this->price,
-            'quantity' => $this->quantity
-        ];
-        return $itemCard;
-
+        $image = $this->image;
+        $title = $this->title;
+        $custom =  $this->getAuthors();
+        $custom2 = $this->overview;
+        $price = $this->price;
+        $quantity = $this->quantity;
+        $sconto = $this->getDiscount();
+        include __DIR__ . '/../View/card.php';
     }
 
     public static function fetchAll()
     {
         $BookList = file_get_contents(__DIR__ . "/books_db.json");
-        
         $BookEl = json_decode($BookList, true);
-
         $Books = [];
-        $genres = Genre::fetchAll();
         foreach ($BookEl as $item) {
-            $rand_genre = [];
-            $rand_genre[] = $genres[rand(0, count($genres) - 1)];
+
             $quantity = rand(0, 35);
             $price = rand(5, 50);
-            $Books[] = new Book($item['_id'], $item['thumbnailUrl'], $item['title'], $item['authors'], $item['longDescription'], $rand_genre, $price, $quantity);
+            $Books[] = new Book($item['_id'], $item['thumbnailUrl'], $item['title'], $item['authors'], $item['longDescription'], $price, $quantity);
         }
+       
         return $Books;
     }
 }
+// var_dump($Books);
 
 
 ?>
