@@ -17,3 +17,6 @@ prepariamo una pagina per ogni tipo (classe di oggetti) e creiamo in header dei 
 Creare una navbar stilizzata in header per la navigazione e aggiungere un logo personalizzato
 Usare lo stesso template della card per tutti i prodotti
 
+## ESERCIZIO GIORNO 2
+
+>> Aggiungere almeno un trait ed un exception al vostro shop!

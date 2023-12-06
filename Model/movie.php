@@ -1,4 +1,4 @@
-<!-- definire classe movie -->
+  <!-- definire classe movie -->
 
 <?php
 
@@ -49,27 +49,20 @@ class Movie extends Product
         $template .= "</p>";
         return $template;
     }
-    public function printCard()
+    public function formatCard()
     {
-        $error = '';
-        if (ceil($this->vote_average) < 7) {
-            try {
-                $this->setDiscount(10);
-            } catch (Exception $e) {
-                $error = 'Eccezione:' . $e->getMessage();
-            }
-        }
-        $sconto = $this->getDiscount();
-        $image = $this->poster_path;
-        $title = strlen($this->title) > 28 ? substr($this->title, 0, 28) . '...' : $this->title;
-        $original_title = $this->original_title;
-        $content = substr($this->vote_average, 0, 100) . '...';
-        $custom = $this->getVote();
-        $custom2 = $this->formatGenres();
-        $price = $this->price;
-        $quantity = $this->quantity;
-        $language = $this->original_language;
-        include __DIR__ . '/../View/card.php';
+        $itemCard = [
+                    'sconto' => $this->getDiscount(),
+                    'image' => $this->poster_path,
+                    'title' => $this->title,
+                    'content' => substr($this->vote_average, 0, 100) . '...',
+                    'custom' => $this->getVote(),
+                    'genre' => $this->formatGenres(),
+                    'price' => $this->price,
+                    'quantity' => $this->quantity
+                ];
+                return $itemCard;
+        
     }
 
 

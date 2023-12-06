@@ -2,29 +2,26 @@
 <?php
 include __DIR__ . "/Product.php";
 include __DIR__ . "/Genre.php";
-
+include __DIR__ ."/../Traits/DrawCard.php";
 class Book extends Product
 {
-
+    use DrawCard;
     private int $id;
     private string $image;
     private string $title;
     private array $authors;
 
     private string $overview;
-   
+
 
     public function __construct($id, $image, $title, $authors, $overview,  $price, $quantity)
     {
-
         parent::__construct($price, $quantity);
-
         $this->id = $id;
         $this->image = $image;
         $this->title = $title;
         $this->authors = $authors;
         $this->overview = $overview;
-     
     }
     public function getAuthors()
     {
@@ -35,32 +32,23 @@ class Book extends Product
         $template .= "<p>";
         return $template;
     }
-  
-    // public function formatCard()
-    // {
-    //     $itemCard = [
-    //         'sconto' => $this->getDiscount(),
-    //         'image' => $this->image,
-    //         'title' => strlen($this->title) > 28 ? substr($this->title, 0, 28) . '...' : $this->title,
-    //         'content' => substr($this->overview, 0, 100) . '...',
-    //         'custom' => $this->getAuthors(),
-    //         'genre' => $this->formatGenres(),
-    //         'price' => $this->price,
-    //         'quantity' => $this->quantity
-    //     ];
-    //     return $itemCard;
-    // }
-    public function printCard()
+
+
+    public function formatCard()
     {
-        $image = $this->image;
-        $title = $this->title;
-        $custom =  $this->getAuthors();
-        $custom2 = $this->overview;
-        $price = $this->price;
-        $quantity = $this->quantity;
-        $sconto = $this->getDiscount();
-        include __DIR__ . '/../View/card.php';
+        $itemCard = [
+
+            'image' => $this->image,
+            'title' => $this->title,
+            'custom2' =>  strlen($this->overview) > 28 ? substr($this->overview, 0, 28) . '...' : $this->overview,
+            'custom' =>  $this->getAuthors(),
+            'sconto' => $this->getDiscount(),
+            'price' => $this->price,
+            'quantity' => $this->quantity
+        ];
+        return $itemCard;
     }
+   
 
     public static function fetchAll()
     {
@@ -73,7 +61,7 @@ class Book extends Product
             $price = rand(5, 50);
             $Books[] = new Book($item['_id'], $item['thumbnailUrl'], $item['title'], $item['authors'], $item['longDescription'], $price, $quantity);
         }
-       
+
         return $Books;
     }
 }
