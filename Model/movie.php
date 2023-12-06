@@ -17,8 +17,6 @@ class Movie extends Product
     public $vote_average;
     public array $genres;
 
-
-
     // costrutto
 
     function __construct($id, $original_title, $title, $poster_path, $original_language, $genres, $vote_average, $price, $quantity)
@@ -44,10 +42,9 @@ class Movie extends Product
     }
     public function formatGenres()
     {
-
         $template = "<p>";
-        for ($n = 1; $n <= count($this->genres); $n++) {
-            $template .= '<span>' . $this->genres[$n]->drawGenre;
+        for ($n = 0; $n < count($this->genres); $n++) {
+            $template .= '<span>' . $this->genres[$n]->name . ' </span> ';
         }
         $template .= "</p>";
         return $template;
@@ -64,47 +61,46 @@ class Movie extends Product
         }
         $sconto = $this->getDiscount();
         $image = $this->poster_path;
-        $title = strlen($this->title) > 28 ? substr($this->title, 0 ,28) . '...' :$this->title;
+        $title = strlen($this->title) > 28 ? substr($this->title, 0, 28) . '...' : $this->title;
+        $original_title = $this->original_title;
         $content = substr($this->vote_average, 0, 100) . '...';
         $custom = $this->getVote();
-        $genres = $this->formatGenres();
+        $custom2 = $this->formatGenres();
         $price = $this->price;
         $quantity = $this->quantity;
+        $language = $this->original_language;
         include __DIR__ . '/../View/card.php';
     }
-    
-   
+
+
     public static function fetchAll()
     {
 
         $movieList = file_get_contents(__DIR__ . "/movie_db.json");
         $movieEl = json_decode($movieList, true);
         $movies = [];
-      
-      
         $genres = Genre::fetchAll();
         foreach ($movieEl as $el) {
             $moviegenres = [];
+            $quantity = rand(0, 35);
+            $price = rand(5, 50);
 
-            while (count($moviegenres) < count($el['genres_ids'])) {
-                
+            while (count($moviegenres) < count($el["genre_ids"])) {
+
                 $index = rand(0, count($genres) - 1);
-                
+
                 $rand_genre = $genres[$index];
-               
+
                 if (!in_array($rand_genre, $moviegenres)) {
                     $moviegenres[] = $rand_genre;
                 }
-            $quantity = rand(0, 35);
-            $price = rand(5, 50);
-            $movies[] = new Movie($el["id"], $el["original_title"], $el["title"], $el["poster_path"], $el["original_language"], $genres, $el["vote_average"],   $quantity, $price);
+            }
+            $movies[] = new Movie($el["id"], $el["original_title"], $el["title"], $el["poster_path"], $el["original_language"],  $moviegenres, $el["vote_average"],   $quantity, $price);
         }
+
+
+
+
         return $movies;
     }
-}
-
-
-
-
-
-}?>
+} ?>

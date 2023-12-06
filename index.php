@@ -6,11 +6,11 @@ $movies = Movie::fetchAll();
 
 ?>
 
-<div class="row">
- <?php foreach($movies as $movie) {
+ <div class="row">
+  <?php foreach($movies as $movie) {
     $movie -> printCard();
   }?>
-</div>
+</div> 
   
    
     <?php

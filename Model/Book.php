@@ -39,7 +39,6 @@ class Book extends Product
     }
     private function formatGenres()
     {
-
         $template = "<p>";
         for ($n = 0; $n < count($this->genres); $n++) {
             $template .= $this->genres[$n]->drawGenre();
@@ -62,17 +61,7 @@ class Book extends Product
         return $itemCard;
 
     }
-    // function printCard()
-    // {
-    //     $title = $this->title;
-    //     $description = $this->longDescription;
-    //     $image = $this->thumbnailUrl;
-    //     // $authors = $this->authors;
-    //     $price = $this->price;
-    //     $quantity = $this->quantity;
-    //     // $genres = $this->formatGenres();
-    // 
-    // }
+
     public static function fetchAll()
     {
         $BookList = file_get_contents(__DIR__ . "/books_db.json");
