@@ -2,7 +2,8 @@
 
 
 include __DIR__ ."/View/header.php";
-include __DIR__ ."/Model/Game.php"
+include __DIR__ ."/Model/Game.php";
+$Games = Game::fetchAll();
 
 ?>
 <div class="container">
