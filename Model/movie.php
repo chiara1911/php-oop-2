@@ -4,9 +4,11 @@
 
 include __DIR__ . "/Genre.php";
 include __DIR__ ."/Product.php";
+include __DIR__ ."/../Traits/DrawCard.php";
 class Movie extends Product
 {
     // dichiarati elementi della classe Movie
+    use DrawCard;
     public $id;
     public $original_title;
     public $title;
@@ -30,19 +32,29 @@ class Movie extends Product
         $this->original_language = $original_language;
         $this->genres = $genres;
     }
-    function printCard()
+    public function formatCard()
     {
-        $sconto = $this->setDiscount($this->title);
+
+        $cardItem =[
+            "image"=> $this->poster_path,
+            "title"=> $this->title,
+            // "sconto"=> $this->setDiscount(),
+            "quantity"=> $this->quantity,
+            "price"=> $this->price,
+
+        ];
+        return $cardItem;
+        // $sconto= $this->setDiscount($this->title);
   
-        $image = $this->poster_path;
-        $title = $this->title;
-        $original_title = $this->original_title;
-        $language = $this->original_language;
-        $custom = $this->getVote();
-        $price = $this->price;
-        $quantity = $this->quantity;
+        // $image = $this->poster_path;
+        // $title = $this->title;
+        // $original_title = $this->original_title;
+        // $language = $this->original_language;
+        // $custom = $this->getVote();
+        // $price = $this->price;
+        // $quantity = $this->quantity;
         // $genres = $this->formatGenres();
-        include __DIR__ . "/../View/card.php";
+        // include __DIR__ . "/../View/card.php";
     }
     public function getVote()
     {
@@ -75,7 +87,7 @@ class Movie extends Product
         // $genre_random=[]
         $genres = Genre::fetchAll();
         foreach ($movieEl as $el) {
-            // $moviegenres = [];
+            $moviegenres = [];
            
             // for ($i = 0; $i < count($el['genre_ids']); $i++) {
             //     $index = rand(0, count($genres) - 1);
